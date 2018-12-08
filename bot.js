@@ -1,11 +1,11 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const prefix = "s!"
+const prefix = "!"
 client.on('ready', () => {
   console.log('---------------');
   console.log(' Bot Is Online')
   console.log('---------------')
-  
+});
   
 client.on('message',async message => {
   if(message.author.bot || message.channel.type === '*bc') return;
@@ -13,7 +13,7 @@ client.on('message',async message => {
   if(args[0] === `*bc`) {
     if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send('- **أنت لا تملك الصلاحيات اللازمة لأستخدام هذا الأمر**');
     if(!args[1]) return message.channel.send('- **يجب عليك كتابة الرسالة بعد الأمر**');
- 
+  
     let msgCount = 0;
     let errorCount = 0;
     let successCount = 0;
@@ -33,5 +33,7 @@ client.on('message',async message => {
   }
 });
 
-  
+
+
+
 client.login(process.env.TOKEN);// لا تغير فيها شيء
