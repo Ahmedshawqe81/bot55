@@ -6,7 +6,7 @@ const client = new Discord.Client();
 
 
 
-var prefix = 'y!'
+var prefix = 's!'
 client.on('ready',  () => {
   console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'); 
   console.log('by Ahmed');
@@ -212,7 +212,7 @@ hours = 12;
 
 
 client.on('message', message => {
-            if (message.content.startsWith("!!help")) {
+            if (message.content.startsWith("s!help")) {
      let embed = new Discord.RichEmbed()
 .setThumbnail(message.author.avatarURL)
 .addField('!!report | للتبليغ عن شخص مأ للاونر')
