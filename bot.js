@@ -5,6 +5,8 @@ client.on('ready', () => {
   console.log('---------------');
   console.log(' Bot Is Online')
   console.log('---------------')
+  
+  
 client.on('message',async message => {
   if(message.author.bot || message.channel.type === '*bc') return;
   let args = message.content.split(' ');
