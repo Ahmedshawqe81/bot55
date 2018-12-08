@@ -6,7 +6,7 @@ const client = new Discord.Client();
 
 
 
-var prefix = '!!'
+var prefix = 'y!'
 client.on('ready',  () => {
   console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'); 
   console.log('by Ahmed');
@@ -37,7 +37,7 @@ client.on('message', function(message) {
     .addField("**# - Time:**",message.createdAt,true)
     .setFooter("لو ان الابلاغ غلط انت اللي هتاخد انذار")
 message.channel.send(Rembed)
-message.channel.send("__متاكد انك هتقدم بلاغ ف الشخص ده لصاحب السيرفر ؟؟__").then(msg => {
+message.channel.send("هل تريد حقا التبليغ عن هذا الشخص ؟").then(msg => {
     msg.react("✅")
     msg.react("❌")
 .then(() => msg.react('❌'))
@@ -98,28 +98,8 @@ client.on('message', message => {
     }) 
     }  
     }) 
-client.on('message', message => {
-    var args = message.content.toLowerCase().split(' ');
-    var command = args[0];
-    var prefix = '!!';
-    var wordsSay = message.content.split(' ').slice(1).join(' ');
-   
-    if(command == prefix + 'say') {
-        var sayRole = message.guild.roles.find(r => r.name === 'ℊℯℯ𝖪');
-        if(!sayRole) return message.channel.send('لا استطيع ايجاد رتبة `ℊℯℯ𝖪` ');
-        if(!message.member.roles.has(sayRole.id)) return message.channel.send('يجب ان تتوفر لديك رتبة `ℊℯℯ𝖪`');
-        if(!wordsSay) return message.channel.send(`***EX :*** ${prefix}say Hello World! `);
-       
-        message.delete();
-        let sayE = new Discord.RichEmbed()  
-        .setColor('RANDOM')
-        .setDescription(`**${wordsSay}**`)  
-       
-        message.channel.send(sayE);
-    }
-});
 client.on('guildMemberAdd', member => {
-    let channel = member.guild.channels.find('name', '♛『five』♛');
+    let channel = member.guild.channels.find('name', '👋👋welcome👋👋');
     let memberavatar = member.user.avatarURL
       if (!channel) return;
     let embed = new Discord.RichEmbed()
@@ -140,21 +120,6 @@ client.on('guildMemberAdd', member => {
       channel.sendEmbed(embed);
     });
    
-    client.on('guildMemberRemove', member => {
-        var embed = new Discord.RichEmbed()
-        .setAuthor(member.user.username, member.user.avatarURL)
-        .setThumbnail(member.user.avatarURL)
-        .setTitle(`بس بعرف وين رحت؟؟؟ :raised_hand::skin-tone-1: :pensive:`)
-        .setDescription(`مع السلامه تشرفنا بك :raised_hand::skin-tone-1: :pensive: `)
-        .addField('👤   تبقي',`**[ ${member.guild.memberCount} ]**`,true)
-        .setColor('PURPLE')
-        .setFooter(`====اهلا السيرفر نور بيك و الله====`, 'https://cdn.discordapp.com/attachments/397818254439219217/399292026782351381/shy.png')
-   
-    var channel =member.guild.channels.find('name', 'welcome')
-    if (!channel) return;
-    channel.send({embed : embed});
- 
-    });
 client.on('message',async message => {
     const moment = require('moment');
 const ms = require('ms')
@@ -262,34 +227,6 @@ client.on('message', message => {
   message.channel.sendEmbed(embed);
     }
 });
-client.on("ready", () => { // كود رينبو
-  function lol() {
-    client.guilds.get('518933084792684544').roles.find("name", "ℊℯℯ𝖪").setColor("RANDOM");
-  };
-  setInterval(lol, 1000);
-});
-client.on("ready", () => {
-
-    var guild;
-
-    while (!guild)
-
-        guild = client.guilds.get("518933084792684544");
-
-    guild.fetchInvites().then((data) => {
-
-        data.forEach((Invite, key, map) => {
-
-            var Inv = Invite.code;
-
-            dat[Inv] = Invite.uses;
-
-        });
-
-    });
-
-});
-
  
 
 
@@ -318,7 +255,7 @@ client.on("guildMemberAdd", (member) => {
 
     while (!guild)
 
-        guild = client.guilds.get("518933084792684544");
+        guild = client.guilds.get("520918306346106900");
 
     guild.fetchInvites().then((data) => {
 
@@ -394,34 +331,7 @@ Dat = currentTime.getDate()
   }
 
 });
-client.on('message', message => {      
-if (message.content.startsWith('!!clear')) { //xRGRx .. By FIVE STARS
-    if(!message.channel.guild) return message.reply('⛔ | This Command For Servers Only!');
-        if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('⛔ | You dont have **MANAGE_MESSAGES** Permission!');
-        if(!message.guild.member(client.user).hasPermission('MANAGE_MESSAGES')) return message.channel.send('⛔ | I dont have **MANAGE_MESSAGES** Permission!');
- let args = message.content.split(" ").slice(1)
-    let messagecount = parseInt(args);
-    if (args > 1000) return message.reply("**🛑 || يجب ان يكون عدد المسح أقل من 1000 .**").then(messages => messages.delete(5000))
-    if(!messagecount) args = '1000';
-    message.channel.fetchMessages({limit: messagecount + 1}).then(messages => message.channel.bulkDelete(messages));
-    message.channel.send(`\`${args}\` : __عدد الرسائل التي تم مسحها __ `).then(messages => messages.delete(5000));
-  }
-  });
-client.on('message', msg => {
- if (msg.content.startsWith('!!send')) {
-      let args = msg.content.split(' ').slice(1)
-      if (!args[0]) return msg.reply(`**منشن الشخص اولا**`)
-      if (!args[1]) return msg.reply(`**ما هي الرساله المطلوب ارسالها**`)
-      let alpha = msg.mentions.members.first()
-      if (!alpha) return msg.reply(`**يجب تحديد الشخص**`)
-      let alphaEmbed = new Discord.RichEmbed()
-      .setTitle(`**رسالة جديده لك من شخص ما**`)
-      .setDescription(args.join(" "))
 
-      client.users.get(`${alpha.id}`).send(alphaEmbed)
-      msg.reply(`**تم ارسال الرساله**`)
-    }
-});
 client.on('message', function(msg) {
   let verifLevels = ["None", "Low", "Medium", "(╯°□°）╯︵  ┻━┻", "┻━┻ミヽ(ಠ益ಠ)ノ彡┻━┻"];
   let region = {
