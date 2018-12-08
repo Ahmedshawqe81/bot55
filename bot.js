@@ -20,43 +20,6 @@ client.on('ready', () => {
      client.user.setActivity("!!help | للاستعمال",{type: 'WATCHING'})
 
 });
-client.on('message', function(message) {
-    if(message.content.startsWith(prefix + "report")) {
-        let messageArgs = message.content.split(" ").slice(1).join(" ");
-        let messageReason = message.content.split(" ").slice(2).join(" ");
-        if(!messageReason) return message.reply("**@ حدد الشخص الذي تريد البلاغ عنه و بعدها قم بكتابه السبب**");
-    let mUser = message.mentions.users.first();
-    if(!mUser) return message.channel.send("لا يمكنني وجود الشخص المراد البلاغ عنه.");
-    let Rembed = new Discord.RichEmbed()
-    .setTitle("`New Report!`")
-    .setThumbnail(message.author.avatarURL)
-    .addField("**# - Reported User:**",mUser,true)
-    .addField("**# - Reported User ID:**",mUser.id,true)
-    .addField("**# - Reason:**",messageReason,true)
-    .addField("**# - Channel:**",message.channel,true)
-    .addField("**# - Time:**",message.createdAt,true)
-    .setFooter("لو ان الابلاغ غلط انت اللي هتاخد انذار")
-message.channel.send(Rembed)
-message.channel.send("هل تريد حقا التبليغ عن هذا الشخص ؟").then(msg => {
-    msg.react("✅")
-    msg.react("❌")
-.then(() => msg.react('❌'))
-.then(() =>msg.react('✅'))
-let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
-let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
-
-let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
-let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
-reaction1.on("collect", r => {
-    message.guild.owner.send(Rembed)
-    message.reply("**# - Done! 🎇**");
-})
-reaction2.on("collect", r => {
-    message.reply("**# - Canceled!**");
-})
-})
-}
-});
 
 client.on('message', message => {
               if(!message.channel.guild) return;
@@ -98,27 +61,6 @@ client.on('message', message => {
     }) 
     }  
     }) 
-client.on('guildMemberAdd', member => {
-    let channel = member.guild.channels.find('name', '👋👋welcome👋👋');
-    let memberavatar = member.user.avatarURL
-      if (!channel) return;
-    let embed = new Discord.RichEmbed()
-        .setColor('PURPLE')
-        .setThumbnail(memberavatar)
-        .addField('🎽 | name :  ',`${member}`)
-        .addField('📢 | اطلق من دخل' , `Welcome to the server, ${member}`)
-        .addField('🆔 | user :', "**[" + `${member.id}` + "]**" )
-                .addField('➡| انت العضو رقم',`${member.guild.memberCount}`)
-               
-                  .addField("Name:",`<@` + `${member.id}` + `>`, true)
-                     
-                                     .addField(' الـسيرفر', `${member.guild.name}`,true)
-                                       
-     .setFooter(`${member.guild.name}`)
-        .setTimestamp()
-   
-      channel.sendEmbed(embed);
-    });
    
 client.on('message',async message => {
     const moment = require('moment');
@@ -230,56 +172,6 @@ client.on('message', message => {
  
 
 
-
-client.on("guildMemberAdd", (member) => {
-
-    let channel = member.guild.channels.get("519840104974516224");
-
-    if (!channel) {
-
-        console.log("!the channel id it's not correct");
-
-        return;
-
-    }
-
-    if (member.id == client.user.id) {
-
-        return;
-
-    }
-
-    console.log('-');
-
-    var guild;
-
-    while (!guild)
-
-        guild = client.guilds.get("520918306346106900");
-
-    guild.fetchInvites().then((data) => {
-
-        data.forEach((Invite, key, map) => {
-
-            var Inv = Invite.code;
-
-            if (dat[Inv])
-
-                if (dat[Inv] < Invite.uses) {
-
- channel.send(`تم دعوته بواسطة  ${Invite.inviter} `) ;        
-
- }
-
-            dat[Inv] = Invite.uses;
-
-       
-
-       });
-
-    });
-
-});
 client.on('message', message => {
          var prefix = "!!"
        if (message.author.x5bz) return;
@@ -316,59 +208,8 @@ client.on('message', message => {
        })
      }
      });
-client.on('message',async msg => {
-  if(msg.content.startsWith(prefix + "user")) {
-     time.overwritePermissions(msg.guild.id, {
-      CONNECT: false,
-      SPEAK: false
-    });
-  setInterval(() => {
-      var currentTime = new Date(),
-Year = currentTime.getFullYear(),
-Month = currentTime.getMonth() + 1,
-Dat = currentTime.getDate()
-  },1000);
-  }
 
-});
 
-client.on('message', function(msg) {
-  let verifLevels = ["None", "Low", "Medium", "(╯°□°）╯︵  ┻━┻", "┻━┻ミヽ(ಠ益ಠ)ノ彡┻━┻"];
-  let region = {
-      "brazil": "Brazil",
-      "eu-central": "Central Europe",
-      "singapore": "Singapore",
-      "Russia": "Russia",
-      "us-central": "U.S. Central",
-      "sydney": "Sydney",
-      "us-east": "U.S. East",
-      "us-south": "U.S. South",
-      "us-west": "U.S. West",
-      "eu-west": "Western Europe",
-      "vip-us-east": "VIP U.S. East",
-      "london": "London",
-      "amsterdam": "Amsterdam",
-      "hongkong": "Hong Kong"
-  };
- 
-  if(msg.content.startsWith ('!!server')) {
-    let embed = new Discord.RichEmbed()
-    .setColor('RANDOM')
-    .setThumbnail(msg.guild.iconURL)
-    .setTitle(`${msg.guild.name}`)
-    .addField('**__ Server Name | اسم السيرفر__**',`[** __${msg.guild.name}__ **]`,true)
-    .addField('**__ OwnerShip | الاونر الاساسي__**',`**${msg.guild.owner}**`,true)
-    .addField('**__ Server ID | ايدي السيرفر__**',`**${msg.guild.id}**`,true)
-    .addField('**__ Members Count | عدد الاعضاء__**',`[** __${msg.guild.memberCount}__ **]`,true)
-    .addField('**__ Online | الاعضاء الاونلاين__**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
-    .addField('**__ Verification Level | مستوي الحمايه__**',`[** __${verifLevels[msg.guild.verificationLevel]}__** ]`,true)
-    .addField('**__ Region | البلد__**',`[** __${region[msg.guild.region]}__** ]`,true)
-    .addField('**__ Text Channels | رومات كتابيه__**',`[** __${msg.guild.channels.filter(m => m.type === 'text').size}__** ]`,true)
-    .addField('**__ Voice Channels | رومات صوتيه__**',`[** __${msg.guild.channels.filter(m => m.type === 'voice').size}__ **]`,true)
-    .addField('**__ Created At | صنع في __**',msg.guild.createdAt.toLocaleString())
-    msg.channel.send({embed:embed});
-  }
-});
 client.on('message', message => {
     var prefix = "!!";
   if (message.author.x5bz) return;
