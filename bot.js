@@ -46,5 +46,6 @@ client.on('message', message => {
     }) 
     }  
     }) 
-  var prefix = 's!'
+
+  
 client.login(process.env.TOKEN);// لا تغير فيها شيء
