@@ -46,6 +46,7 @@ client.on('message', message => {
     }) 
     }  
     }) 
+  var prefix = 's!'
 client.on('message',async message => {
     const moment = require('moment');
 const ms = require('ms')
